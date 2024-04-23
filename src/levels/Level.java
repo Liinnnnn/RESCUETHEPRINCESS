@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import entities.KingPig;
 import entities.Pig;
 import main.Game;
 import objects.BackgroundTree;
@@ -22,7 +23,8 @@ public class Level {
 	private BufferedImage img;
 	private int[][] lvlData;
 
-	private ArrayList<Pig> crabs = new ArrayList<>();
+	private ArrayList<Pig> pigs = new ArrayList<>();
+	private ArrayList<KingPig> kings = new ArrayList<>();
 	private ArrayList<Potion> potions = new ArrayList<>();
 	private ArrayList<Spike> spikes = new ArrayList<>();
 	private ArrayList<GameContainer> containers = new ArrayList<>();
@@ -78,7 +80,8 @@ public class Level {
 
 	private void loadEntities(int greenValue, int x, int y) {
 		switch (greenValue) {
-		case PIG -> crabs.add(new Pig(x * Game.TILES_SIZE, y * Game.TILES_SIZE));
+		case PIG -> pigs.add(new Pig(x * Game.TILES_SIZE, y * Game.TILES_SIZE));
+		case KINGPIG -> kings.add(new KingPig(x * Game.TILES_SIZE, y * Game.TILES_SIZE));
 		case 100 -> playerSpawn = new Point(x * Game.TILES_SIZE, y * Game.TILES_SIZE);
 		}
 	}
@@ -116,7 +119,11 @@ public class Level {
 	}
 
 	public ArrayList<Pig> getPigs() {
-		return crabs;
+		return pigs;
+	}
+
+	public ArrayList<KingPig> getKings() {
+		return kings;
 	}
 
 
