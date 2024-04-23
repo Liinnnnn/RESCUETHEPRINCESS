@@ -133,6 +133,7 @@ public class Constants {
 
 	public static class EnemyConstants {
 		public static final int PIG = 0;
+		public static final int KINGPIG = 1;
 
 		public static final int IDLE = 0;
 		public static final int RUNNING = 1;
@@ -150,12 +151,21 @@ public class Constants {
 		public static final int PIG_DRAWOFFSET_X = (int) (10 * Game.SCALE);
 		public static final int PIG_DRAWOFFSET_Y = (int) (10 * Game.SCALE);
 
+		public static final int KINGPIG_WIDTH_DEFAULT = 38;
+		public static final int KINGPIG_HEIGHT_DEFAULT = 28;
+		public static final int KINGPIG_WIDTH = (int) (KINGPIG_WIDTH_DEFAULT * Game.SCALE);
+		public static final int KINGPIG_HEIGHT = (int) (KINGPIG_HEIGHT_DEFAULT * Game.SCALE);
+		public static final int KINGPIG_DRAWOFFSET_X = (int) (10 * Game.SCALE);
+		public static final int KINGPIG_DRAWOFFSET_Y = (int) (10 * Game.SCALE);
+
 		public static int GetSpriteAmount(int enemy_type, int enemy_state) {
 			switch (enemy_state) {
 
 			case IDLE: {
 				if (enemy_type == PIG)
 					return 11;
+				else if(enemy_type == KINGPIG)
+					return 12;
 			}
 			case RUNNING:
 				return 6;
@@ -183,12 +193,13 @@ public class Constants {
 		public static int GetEnemyDmg(int enemy_type) {
 			switch (enemy_type) {
 			case PIG:
-				return 100;
+				return 10;
 			default:
 				return 0;
 			}
 		}
 	}
+
 
 	// public static class Environment {
 	// 	public static final int BIG_CLOUD_WIDTH_DEFAULT = 448;
