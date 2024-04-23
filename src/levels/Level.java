@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 import entities.Pig;
 import main.Game;
-import objects.BackgroundTree;
-import objects.Cannon;
-import objects.GameContainer;
-import objects.Grass;
-import objects.Potion;
+// import objects.BackgroundTree;
+// import objects.Cannon;
+// import objects.GameContainer;
+// import objects.Grass;
+// import objects.Potion;
 import objects.Spike;
 
 import static utilz.Constants.EnemyConstants.*;

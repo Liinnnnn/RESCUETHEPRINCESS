@@ -67,9 +67,9 @@ public class Playing extends State implements Statemethods {
 	// you want
 	// it.
 
-	private boolean drawShip = true;
-	private int shipAni, shipTick, shipDir = 1;
-	private float shipHeightDelta, shipHeightChange = 0.05f * Game.SCALE;
+	// private boolean drawShip = true;
+	// private int shipAni, shipTick, shipDir = 1;
+	// private float shipHeightDelta, shipHeightChange = 0.05f * Game.SCALE;
 
 	public Playing(Game game) {
 		super(game);
@@ -127,7 +127,7 @@ public class Playing extends State implements Statemethods {
 		levelManager.loadNextLevel();
 		player.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 		resetAll();
-		drawShip = false;
+		// drawShip = false;
 	}
 
 	private void loadStartLevel() {
