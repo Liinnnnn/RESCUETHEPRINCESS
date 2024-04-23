@@ -67,72 +67,72 @@ public class Playing extends State implements Statemethods {
 	// you want
 	// it.
 
-	private boolean drawShip = true;
-	private int shipAni, shipTick, shipDir = 1;
-	private float shipHeightDelta, shipHeightChange = 0.05f * Game.SCALE;
+	// private boolean drawShip = true;
+	// private int shipAni, shipTick, shipDir = 1;
+	// private float shipHeightDelta, shipHeightChange = 0.05f * Game.SCALE;
 
 	public Playing(Game game) {
 		super(game);
 		initClasses();
 
 		backgroundImg = LoadSave.GetSpriteAtlas(LoadSave.PLAYING_BG_IMG);
-		bigCloud = LoadSave.GetSpriteAtlas(LoadSave.BIG_CLOUDS);
-		smallCloud = LoadSave.GetSpriteAtlas(LoadSave.SMALL_CLOUDS);
+		// bigCloud = LoadSave.GetSpriteAtlas(LoadSave.BIG_CLOUDS);
+		// smallCloud = LoadSave.GetSpriteAtlas(LoadSave.SMALL_CLOUDS);
 		smallCloudsPos = new int[8];
 		for (int i = 0; i < smallCloudsPos.length; i++)
 			smallCloudsPos[i] = (int) (90 * Game.SCALE) + rnd.nextInt((int) (100 * Game.SCALE));
 
-		shipImgs = new BufferedImage[4];
-		BufferedImage temp = LoadSave.GetSpriteAtlas(LoadSave.SHIP);
-		for (int i = 0; i < shipImgs.length; i++)
-			shipImgs[i] = temp.getSubimage(i * 78, 0, 78, 72);
+		// shipImgs = new BufferedImage[4];
+		// BufferedImage temp = LoadSave.GetSpriteAtlas(LoadSave.SHIP);
+		// for (int i = 0; i < shipImgs.length; i++)
+		// 	shipImgs[i] = temp.getSubimage(i * 78, 0, 78, 72);
 
-		loadDialogue();
+		// loadDialogue();
 		calcLvlOffset();
 		loadStartLevel();
 		setDrawRainBoolean();
 	}
 
-	private void loadDialogue() {
-		loadDialogueImgs();
+	// private void loadDialogue() {
+	// 	loadDialogueImgs();
 
-		// Load dialogue array with premade objects, that gets activated when needed.
-		// This is a simple
-		// way of avoiding ConcurrentModificationException error. (Adding to a list that
-		// is being looped through.
+	// 	// Load dialogue array with premade objects, that gets activated when needed.
+	// 	// This is a simple
+	// 	// way of avoiding ConcurrentModificationException error. (Adding to a list that
+	// 	// is being looped through.
 
-		for (int i = 0; i < 10; i++)
-			dialogEffects.add(new DialogueEffect(0, 0, EXCLAMATION));
-		for (int i = 0; i < 10; i++)
-			dialogEffects.add(new DialogueEffect(0, 0, QUESTION));
+	// 	for (int i = 0; i < 10; i++)
+	// 		dialogEffects.add(new DialogueEffect(0, 0, EXCLAMATION));
+	// 	for (int i = 0; i < 10; i++)
+	// 		dialogEffects.add(new DialogueEffect(0, 0, QUESTION));
 
-		for (DialogueEffect de : dialogEffects)
-			de.deactive();
-	}
+	// 	for (DialogueEffect de : dialogEffects)
+	// 		de.deactive();
+	// }
 
-	private void loadDialogueImgs() {
-		BufferedImage qtemp = LoadSave.GetSpriteAtlas(LoadSave.QUESTION_ATLAS);
-		questionImgs = new BufferedImage[5];
-		for (int i = 0; i < questionImgs.length; i++)
-			questionImgs[i] = qtemp.getSubimage(i * 14, 0, 14, 12);
+	// private void loadDialogueImgs() {
+	// 	BufferedImage qtemp = LoadSave.GetSpriteAtlas(LoadSave.QUESTION_ATLAS);
+	// 	questionImgs = new BufferedImage[5];
+	// 	for (int i = 0; i < questionImgs.length; i++)
+	// 		questionImgs[i] = qtemp.getSubimage(i * 14, 0, 14, 12);
 
-		BufferedImage etemp = LoadSave.GetSpriteAtlas(LoadSave.EXCLAMATION_ATLAS);
-		exclamationImgs = new BufferedImage[5];
-		for (int i = 0; i < exclamationImgs.length; i++)
-			exclamationImgs[i] = etemp.getSubimage(i * 14, 0, 14, 12);
-	}
+	// 	BufferedImage etemp = LoadSave.GetSpriteAtlas(LoadSave.EXCLAMATION_ATLAS);
+	// 	exclamationImgs = new BufferedImage[5];
+	// 	for (int i = 0; i < exclamationImgs.length; i++)
+	// 		exclamationImgs[i] = etemp.getSubimage(i * 14, 0, 14, 12);
+	// }
 
 	public void loadNextLevel() {
 		levelManager.setLevelIndex(levelManager.getLevelIndex() + 1);
 		levelManager.loadNextLevel();
 		player.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 		resetAll();
-		drawShip = false;
+		// drawShip = false;
 	}
 
 	private void loadStartLevel() {
 		enemyManager.loadEnemies(levelManager.getCurrentLevel());
-		objectManager.loadObjects(levelManager.getCurrentLevel());
+		// objectManager.loadObjects(levelManager.getCurrentLevel());
 	}
 
 	private void calcLvlOffset() {
@@ -298,7 +298,7 @@ public class Playing extends State implements Statemethods {
 
 		player.resetAll();
 		enemyManager.resetAllEnemies();
-		objectManager.resetAllObjects();
+		// objectManager.resetAllObjects();
 		dialogEffects.clear();
 	}
 
@@ -321,7 +321,7 @@ public class Playing extends State implements Statemethods {
 	}
 
 	public void checkPotionTouched(Rectangle2D.Float hitbox) {
-		objectManager.checkObjectTouched(hitbox);
+		// objectManager.checkObjectTouched(hitbox);
 	}
 
 	public void checkSpikesTouched(Player p) {

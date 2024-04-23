@@ -134,9 +134,9 @@ public class Player extends Entity {
 			updatePos();
 
 		if (moving) {
-			checkPotionTouched();
+			// checkPotionTouched();
 			checkSpikesTouched();
-			checkInsideWater();
+			// checkInsideWater();
 			tileY = (int) (hitbox.y / Game.TILES_SIZE);
 			if (powerAttackActive) {
 				powerAttackTick++;
@@ -154,18 +154,18 @@ public class Player extends Entity {
 		setAnimation();
 	}
 
-	private void checkInsideWater() {
-		if (IsEntityInWater(hitbox, playing.getLevelManager().getCurrentLevel().getLevelData()))
-			currentHealth = 0;
-	}
+	// private void checkInsideWater() {
+	// 	if (IsEntityInWater(hitbox, playing.getLevelManager().getCurrentLevel().getLevelData()))
+	// 		currentHealth = 0;
+	// }
 
 	private void checkSpikesTouched() {
 		playing.checkSpikesTouched(this);
 	}
 
-	private void checkPotionTouched() {
-		playing.checkPotionTouched(hitbox);
-	}
+	// private void checkPotionTouched() {
+	// 	playing.checkPotionTouched(hitbox);
+	// }
 
 	private void checkAttack() {
 		if (attackChecked || aniIndex != 1)

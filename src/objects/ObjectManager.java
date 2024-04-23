@@ -47,15 +47,15 @@ public class ObjectManager {
 				e.hurt(200);
 	}
 
-	public void checkObjectTouched(Rectangle2D.Float hitbox) {
-		for (Potion p : potions)
-			if (p.isActive()) {
-				if (hitbox.intersects(p.getHitbox())) {
-					p.setActive(false);
-					// applyEffectToPlayer(p);
-				}
-			}
-	}
+	// public void checkObjectTouched(Rectangle2D.Float hitbox) {
+	// 	for (Potion p : potions)
+	// 		if (p.isActive()) {
+	// 			if (hitbox.intersects(p.getHitbox())) {
+	// 				p.setActive(false);
+	// 				// applyEffectToPlayer(p);
+	// 			}
+	// 		}
+	// }
 
 	// public void applyEffectToPlayer(Potion p) {
 	// 	if (p.getObjType() == RED_POTION)
@@ -78,12 +78,12 @@ public class ObjectManager {
 	// 		}
 	// }
 
-	public void loadObjects(Level newLevel) {
-		currentLevel = newLevel;
-		potions = new ArrayList<>(newLevel.getPotions());
-		containers = new ArrayList<>(newLevel.getContainers());
-		projectiles.clear();
-	}
+	// public void loadObjects(Level newLevel) {
+	// 	currentLevel = newLevel;
+	// 	potions = new ArrayList<>(newLevel.getPotions());
+	// 	containers = new ArrayList<>(newLevel.getContainers());
+	// 	projectiles.clear();
+	// }
 
 	private void loadImgs() {
 		// BufferedImage potionSprite = LoadSave.GetSpriteAtlas(LoadSave.POTION_ATLAS);
@@ -125,24 +125,24 @@ public class ObjectManager {
 	}
 
 	public void update(int[][] lvlData, Player player) {
-		updateBackgroundTrees();
-		for (Potion p : potions)
-			if (p.isActive())
-				p.update();
+		// updateBackgroundTrees();
+		// for (Potion p : potions)
+		// 	if (p.isActive())
+		// 		p.update();
 
-		for (GameContainer gc : containers)
-			if (gc.isActive())
-				gc.update();
+		// for (GameContainer gc : containers)
+		// 	if (gc.isActive())
+		// 		gc.update();
 
-		// updateCannons(lvlData, player);
-		updateProjectiles(lvlData, player);
+		// // updateCannons(lvlData, player);
+		// updateProjectiles(lvlData, player);
 
 	}
 
-	private void updateBackgroundTrees() {
-		for (BackgroundTree bt : currentLevel.getTrees())
-			bt.update();
-	}
+	// private void updateBackgroundTrees() {
+	// 	for (BackgroundTree bt : currentLevel.getTrees())
+	// 		bt.update();
+	// }
 
 	private void updateProjectiles(int[][] lvlData, Player player) {
 		for (Projectile p : projectiles)
@@ -156,10 +156,10 @@ public class ObjectManager {
 			}
 	}
 
-	private boolean isPlayerInRange(Cannon c, Player player) {
-		int absValue = (int) Math.abs(player.getHitbox().x - c.getHitbox().x);
-		return absValue <= Game.TILES_SIZE * 5;
-	}
+	// private boolean isPlayerInRange(Cannon c, Player player) {
+	// 	int absValue = (int) Math.abs(player.getHitbox().x - c.getHitbox().x);
+	// 	return absValue <= Game.TILES_SIZE * 5;
+	// }
 
 	// private boolean isPlayerInfrontOfCannon(Cannon c, Player player) {
 	// 	// if (c.getObjType() == CANNON_LEFT) {
@@ -266,13 +266,13 @@ public class ObjectManager {
 	// 		}
 	// }
 
-	public void resetAllObjects() {
-		loadObjects(playing.getLevelManager().getCurrentLevel());
-		for (Potion p : potions)
-			p.reset();
-		for (GameContainer gc : containers)
-			gc.reset();
-		for (Cannon c : currentLevel.getCannons())
-			c.reset();
-	}
+	// public void resetAllObjects() {
+	// 	loadObjects(playing.getLevelManager().getCurrentLevel());
+	// 	for (Potion p : potions)
+	// 		p.reset();
+	// 	for (GameContainer gc : containers)
+	// 		gc.reset();
+	// 	for (Cannon c : currentLevel.getCannons())
+	// 		c.reset();
+	// }
 }
