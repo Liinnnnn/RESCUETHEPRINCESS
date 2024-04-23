@@ -159,12 +159,18 @@ public abstract class Enemy extends Entity {
 			if (aniIndex >= GetSpriteAmount(enemyType, state)) {
 				if (enemyType == PIG) {
 					aniIndex = 0;
-
 					switch (state) {
 					case ATTACK, HIT -> state = IDLE;
 					case DEAD -> active = false;
 					}
 				} 
+				if(enemyType == KINGPIG){
+					aniIndex = 0;
+					switch (state) {
+					case ATTACK, HIT -> state = IDLE;
+					case DEAD -> active = false;
+					}
+				}
 			}
 		}
 	}
