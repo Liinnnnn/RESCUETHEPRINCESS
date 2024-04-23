@@ -23,12 +23,12 @@ public class Level {
 	private int[][] lvlData;
 
 	private ArrayList<Pig> crabs = new ArrayList<>();
-	private ArrayList<Potion> potions = new ArrayList<>();
+	// private ArrayList<Potion> potions = new ArrayList<>();
 	private ArrayList<Spike> spikes = new ArrayList<>();
-	private ArrayList<GameContainer> containers = new ArrayList<>();
-	private ArrayList<Cannon> cannons = new ArrayList<>();
-	private ArrayList<BackgroundTree> trees = new ArrayList<>();
-	private ArrayList<Grass> grass = new ArrayList<>();
+	// private ArrayList<GameContainer> containers = new ArrayList<>();
+	// private ArrayList<Cannon> cannons = new ArrayList<>();
+	// private ArrayList<BackgroundTree> trees = new ArrayList<>();
+	// private ArrayList<Grass> grass = new ArrayList<>();
 
 	private int lvlTilesWide;
 	private int maxTilesOffset;
@@ -66,15 +66,15 @@ public class Level {
 			lvlData[y][x] = 0;
 		else
 			lvlData[y][x] = redValue;
-		switch (redValue) {
-		case 0, 1, 2, 3, 30, 31, 33, 34, 35, 36, 37, 38, 39 -> 
-		grass.add(new Grass((int) (x * Game.TILES_SIZE), (int) (y * Game.TILES_SIZE) - Game.TILES_SIZE, getRndGrassType(x)));
-		}
+		// switch (redValue) {
+		// case 0, 1, 2, 3, 30, 31, 33, 34, 35, 36, 37, 38, 39 -> 
+		// // grass.add(new Grass((int) (x * Game.TILES_SIZE), (int) (y * Game.TILES_SIZE) - Game.TILES_SIZE, getRndGrassType(x)));
+		// }
 	}
 
-	private int getRndGrassType(int xPos) {
-		return xPos % 2;
-	}
+	// private int getRndGrassType(int xPos) {
+	// 	return xPos % 2;
+	// }
 
 	private void loadEntities(int greenValue, int x, int y) {
 		switch (greenValue) {
@@ -120,29 +120,29 @@ public class Level {
 	}
 
 
-	public ArrayList<Potion> getPotions() {
-		return potions;
-	}
+	// public ArrayList<Potion> getPotions() {
+	// 	return potions;
+	// }
 
-	public ArrayList<GameContainer> getContainers() {
-		return containers;
-	}
+	// public ArrayList<GameContainer> getContainers() {
+	// 	return containers;
+	// }
 
 	public ArrayList<Spike> getSpikes() {
 		return spikes;
 	}
 
-	public ArrayList<Cannon> getCannons() {
-		return cannons;
-	}
+	// public ArrayList<Cannon> getCannons() {
+	// 	return cannons;
+	// }
 
 
-	public ArrayList<BackgroundTree> getTrees() {
-		return trees;
-	}
+	// public ArrayList<BackgroundTree> getTrees() {
+	// 	return trees;
+	// }
 
-	public ArrayList<Grass> getGrass() {
-		return grass;
-	}
+	// public ArrayList<Grass> getGrass() {
+	// 	return grass;
+	// }
 
 }
