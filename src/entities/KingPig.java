@@ -41,7 +41,7 @@ public class KingPig extends Enemy {
 					if (isPlayerCloseForAttack(playing.getPlayer()))
 						newState(ATTACK);
 				}
-				move(lvlData);
+				move(lvlData);	
 
 				if (inAir)
 					playing.addDialogue((int) hitbox.x, (int) hitbox.y, EXCLAMATION);

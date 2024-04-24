@@ -78,9 +78,9 @@ public class Playing extends State implements Statemethods {
 		backgroundImg = LoadSave.GetSpriteAtlas(LoadSave.PLAYING_BG_IMG);
 		// bigCloud = LoadSave.GetSpriteAtlas(LoadSave.BIG_CLOUDS);
 		// smallCloud = LoadSave.GetSpriteAtlas(LoadSave.SMALL_CLOUDS);
-		smallCloudsPos = new int[8];
-		for (int i = 0; i < smallCloudsPos.length; i++)
-			smallCloudsPos[i] = (int) (90 * Game.SCALE) + rnd.nextInt((int) (100 * Game.SCALE));
+		// smallCloudsPos = new int[8];
+		// for (int i = 0; i < smallCloudsPos.length; i++)
+		// 	smallCloudsPos[i] = (int) (90 * Game.SCALE) + rnd.nextInt((int) (100 * Game.SCALE));
 
 		// shipImgs = new BufferedImage[4];
 		// BufferedImage temp = LoadSave.GetSpriteAtlas(LoadSave.SHIP);
@@ -132,7 +132,7 @@ public class Playing extends State implements Statemethods {
 
 	private void loadStartLevel() {
 		enemyManager.loadEnemies(levelManager.getCurrentLevel());
-		// objectManager.loadObjects(levelManager.getCurrentLevel());
+		objectManager.loadObjects(levelManager.getCurrentLevel());
 	}
 
 	private void calcLvlOffset() {
@@ -298,7 +298,7 @@ public class Playing extends State implements Statemethods {
 
 		player.resetAll();
 		enemyManager.resetAllEnemies();
-		// objectManager.resetAllObjects();
+		objectManager.resetAllObjects();
 		dialogEffects.clear();
 	}
 
@@ -314,7 +314,7 @@ public class Playing extends State implements Statemethods {
 
 	// public void checkObjectHit(Rectangle2D.Float attackBox) {
 	// 	objectManager.checkObjectHit(attackBox);
-	// }
+	// }d
 
 	public void checkEnemyHit(Rectangle2D.Float attackBox) {
 		enemyManager.checkEnemyHit(attackBox);
