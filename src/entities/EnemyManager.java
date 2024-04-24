@@ -80,7 +80,7 @@ public class EnemyManager {
 			if (p.isActive())
 				if (p.getState() != DEAD && p.getState() != HIT)
 					if (attackBox.intersects(p.getHitbox())) {
-						p.hurt(20);
+						p.hurt(30);
 						return;
 					}
 		}
@@ -89,7 +89,7 @@ public class EnemyManager {
 			if(k.isActive())
 				if(k.getState() != DEAD && k.getState() != HIT)
 					if(attackBox.intersects(k.getHitbox())){
-						k.hurt(5);
+						k.hurt(30);
 						return;
 					}
 		}
