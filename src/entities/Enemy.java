@@ -35,7 +35,7 @@ public abstract class Enemy extends Entity {
 		if (walkDir == RIGHT)
 			attackBox.x = hitbox.x + hitbox.width;
 		else
-			attackBox.x = hitbox.x - attackBoxOffsetX;
+			attackBox.x = hitbox.x - hitbox.width;
 
 		attackBox.y = hitbox.y;
 	}
@@ -126,6 +126,9 @@ public abstract class Enemy extends Entity {
 		case PIG -> {
 			return absValue <= attackDistance;
 		}
+		case KINGPIG ->{
+		 return absValue <= attackDistance;
+		}	
 		}
 		return false;
 	}
