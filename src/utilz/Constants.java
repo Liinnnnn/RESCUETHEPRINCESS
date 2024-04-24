@@ -153,8 +153,8 @@ public class Constants {
 
 		public static final int KINGPIG_WIDTH_DEFAULT = 38;
 		public static final int KINGPIG_HEIGHT_DEFAULT = 28;
-		public static final int KINGPIG_WIDTH = (int) (KINGPIG_WIDTH_DEFAULT * Game.SCALE);
-		public static final int KINGPIG_HEIGHT = (int) (KINGPIG_HEIGHT_DEFAULT * Game.SCALE);
+		public static final int KINGPIG_WIDTH = (int) (KINGPIG_WIDTH_DEFAULT * Game.SCALE * 1.5);
+		public static final int KINGPIG_HEIGHT = (int) (KINGPIG_HEIGHT_DEFAULT * Game.SCALE * 1.5);
 		public static final int KINGPIG_DRAWOFFSET_X = (int) (10 * Game.SCALE);
 		public static final int KINGPIG_DRAWOFFSET_Y = (int) (10 * Game.SCALE);
 
@@ -184,7 +184,9 @@ public class Constants {
 		public static int GetMaxHealth(int enemy_type) {
 			switch (enemy_type) {
 			case PIG:
-				return 50;
+				return 100;
+			case KINGPIG:
+				return 200;
 			default:
 				return 1;
 			}
@@ -194,6 +196,8 @@ public class Constants {
 			switch (enemy_type) {
 			case PIG:
 				return 10;
+			case KINGPIG:
+				return 30;
 			default:
 				return 0;
 			}
