@@ -46,20 +46,20 @@ public class EnemyManager {
 	}
 
 	public void draw(Graphics g, int xLvlOffset) {
-		drawCrabs(g, xLvlOffset);
+		drawPigs(g, xLvlOffset);
 		drawKingPig(g, xLvlOffset);
 	}
 
 
-	private void drawCrabs(Graphics g, int xLvlOffset) {
+	private void drawPigs(Graphics g, int xLvlOffset) {
 		for (Pig p : currentLevel.getPigs()){
 			if (p.isActive()) {
 
 				g.drawImage(pigArr[p.getState()][p.getAniIndex()], (int) p.getHitbox().x - xLvlOffset - PIG_DRAWOFFSET_X + p.flipX(),
-						(int) p.getHitbox().y - PIG_DRAWOFFSET_Y + (int) p.getPushDrawOffset(), PIG_WIDTH * p.flipW(), PIG_HEIGHT, null);
+					(int) p.getHitbox().y - PIG_DRAWOFFSET_Y + (int) p.getPushDrawOffset(), PIG_WIDTH * p.flipW(), PIG_HEIGHT, null);
 
-				p.drawHitbox(g, xLvlOffset);
-				p.drawAttackBox(g, xLvlOffset);
+				// p.drawHitbox(g, xLvlOffset);
+				// p.drawAttackBox(g, xLvlOffset);
 			}
 		}
 	}
@@ -69,8 +69,8 @@ public class EnemyManager {
 			if(k.isActive()){
 				g.drawImage(kingPigArr[k.getState()][k.getAniIndex()], (int) k.getHitbox().x - xLvlOffset - KINGPIG_DRAWOFFSET_X + k.flipX(), 
 				(int) k.getHitbox().y - KINGPIG_DRAWOFFSET_Y + (int) k.getPushDrawOffset(), KINGPIG_WIDTH * k.flipW() ,KINGPIG_HEIGHT, null);
-				k.drawHitbox(g, xLvlOffset);
-				k.drawAttackBox(g, xLvlOffset);
+				// k.drawHitbox(g, xLvlOffset);
+				// k.drawAttackBox(g, xLvlOffset);
 			}
 		}
 	}
@@ -89,7 +89,7 @@ public class EnemyManager {
 			if(k.isActive())
 				if(k.getState() != DEAD && k.getState() != HIT)
 					if(attackBox.intersects(k.getHitbox())){
-						k.hurt(30);
+						k.hurt(20);
 						return;
 					}
 		}

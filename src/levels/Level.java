@@ -8,11 +8,6 @@ import java.util.ArrayList;
 import entities.KingPig;
 import entities.Pig;
 import main.Game;
-import objects.BackgroundTree;
-import objects.Cannon;
-import objects.GameContainer;
-import objects.Grass;
-import objects.Potion;
 import objects.Spike;
 
 import static utilz.Constants.EnemyConstants.*;
@@ -25,12 +20,7 @@ public class Level {
 
 	private ArrayList<Pig> pigs = new ArrayList<>();
 	private ArrayList<KingPig> kings = new ArrayList<>();
-	private ArrayList<Potion> potions = new ArrayList<>();
 	private ArrayList<Spike> spikes = new ArrayList<>();
-	private ArrayList<GameContainer> containers = new ArrayList<>();
-	private ArrayList<Cannon> cannons = new ArrayList<>();
-	private ArrayList<BackgroundTree> trees = new ArrayList<>();
-	private ArrayList<Grass> grass = new ArrayList<>();
 
 	private int lvlTilesWide;
 	private int maxTilesOffset;
@@ -45,11 +35,6 @@ public class Level {
 	}
 
 	private void loadLevel() {
-
-		// Looping through the image colors just once. Instead of one per
-		// object/enemy/etc..
-		// Removed many methods in HelpMethods class.
-
 		for (int y = 0; y < img.getHeight(); y++)
 			for (int x = 0; x < img.getWidth(); x++) {
 				Color c = new Color(img.getRGB(x, y));
@@ -68,15 +53,9 @@ public class Level {
 			lvlData[y][x] = 0;
 		else
 			lvlData[y][x] = redValue;
-		switch (redValue) {
-		case 0, 1, 2, 3, 30, 31, 33, 34, 35, 36, 37, 38, 39 -> 
-		grass.add(new Grass((int) (x * Game.TILES_SIZE), (int) (y * Game.TILES_SIZE) - Game.TILES_SIZE, getRndGrassType(x)));
-		}
 	}
 
-	private int getRndGrassType(int xPos) {
-		return xPos % 2;
-	}
+	
 
 	private void loadEntities(int greenValue, int x, int y) {
 		switch (greenValue) {
@@ -88,11 +67,7 @@ public class Level {
 
 	private void loadObjects(int blueValue, int x, int y) {
 		switch (blueValue) {
-		// case RED_POTION, BLUE_POTION -> potions.add(new Potion(x * Game.TILES_SIZE, y * Game.TILES_SIZE, blueValue));
-		// case BOX, BARREL -> containers.add(new GameContainer(x * Game.TILES_SIZE, y * Game.TILES_SIZE, blueValue));
 		case SPIKE -> spikes.add(new Spike(x * Game.TILES_SIZE, y * Game.TILES_SIZE, SPIKE));
-		// case CANNON_LEFT, CANNON_RIGHT -> cannons.add(new Cannon(x * Game.TILES_SIZE, y * Game.TILES_SIZE, blueValue));
-		// case TREE_ONE, TREE_TWO, TREE_THREE -> trees.add(new BackgroundTree(x * Game.TILES_SIZE, y * Game.TILES_SIZE, blueValue));
 		}
 	}
 
@@ -126,30 +101,8 @@ public class Level {
 		return kings;
 	}
 
-
-	public ArrayList<Potion> getPotions() {
-		return potions;
-	}
-
-	public ArrayList<GameContainer> getContainers() {
-		return containers;
-	}
-
 	public ArrayList<Spike> getSpikes() {
 		return spikes;
-	}
-
-	public ArrayList<Cannon> getCannons() {
-		return cannons;
-	}
-
-
-	public ArrayList<BackgroundTree> getTrees() {
-		return trees;
-	}
-
-	public ArrayList<Grass> getGrass() {
-		return grass;
 	}
 
 }

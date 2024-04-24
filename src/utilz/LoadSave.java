@@ -11,16 +11,16 @@ import javax.imageio.ImageIO;
 
 public class LoadSave {
 
-	public static final String PLAYER_ATLAS = "combined_image (5).png";
+	public static final String PLAYER_ATLAS = "player.png";
 	public static final String LEVEL_ATLAS = "orange_brick.png";
-	public static final String MENU_BUTTONS = "button_atlas.png";
-	public static final String MENU_BACKGROUND = "menu_background.png";
+	public static final String MENU_BUTTONS = "TExtMenu.png";
+	public static final String MENU_BACKGROUND = "background_menu.png";
 	public static final String PAUSE_BACKGROUND = "pause_menu.png";
 	public static final String SOUND_BUTTONS = "sound_button.png";
 	public static final String URM_BUTTONS = "urm_buttons.png";
 	public static final String VOLUME_BUTTONS = "volume_buttons.png";
-	public static final String MENU_BACKGROUND_IMG = "background_menu(2).png";
-	public static final String PLAYING_BG_IMG = "background_menu.png";
+	public static final String MENU_BACKGROUND_IMG = "background_menu.png";
+	public static final String PLAYING_BG_IMG = "BACKGROUND.png";
 	public static final String PIG_SPRITE = "Pig.png";
 	public static final String KINGPIG_SPRITE = "KingPig.png";
 	public static final String STATUS_BAR = "health_power_bar.png";
@@ -28,11 +28,8 @@ public class LoadSave {
 	public static final String TRAP_ATLAS = "trap_atlas.png";
 	public static final String DEATH_SCREEN = "death_screen.png";
 	public static final String OPTIONS_MENU = "options_background.png";
-	public static final String CREDITS = "credits_list.png";
 	public static final String GAME_COMPLETED = "game_completed.png";
-	public static final String RAIN_PARTICLE = "rain_particle.png";
-	public static final String WATER_TOP = "water_atlas_animation.png";
-	public static final String WATER_BOTTOM = "water.png";
+
 
 	public static BufferedImage GetSpriteAtlas(String fileName) {
 		BufferedImage img = null;

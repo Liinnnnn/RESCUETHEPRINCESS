@@ -5,14 +5,13 @@ import static utilz.HelpMethods.IsFloor;
 
 import gamestates.Playing;
 
-import static utilz.Constants.Dialogue.*;
 
 public class KingPig extends Enemy {
 
     public KingPig(float x, float y) {
         super(x, y, KINGPIG_WIDTH, KINGPIG_HEIGHT, KINGPIG);
 		initHitbox((int)(17 * 1.5), (int)(19 * 1.5));
-		initAttackBox(18, (int)(19 * 1.5), 12);
+		initAttackBox(30, (int)(19 * 1.5), 12);
     }
 
     public void update(int[][] lvlData, Playing playing) {
@@ -43,10 +42,7 @@ public class KingPig extends Enemy {
 				}
 				move(lvlData);	
 
-				if (inAir)
-					playing.addDialogue((int) hitbox.x, (int) hitbox.y, EXCLAMATION);
-
-				break;
+				
 			case ATTACK:
 				if (aniIndex == 0)
 					attackChecked = false;

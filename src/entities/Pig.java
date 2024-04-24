@@ -2,7 +2,6 @@ package entities;
 
 import static utilz.Constants.EnemyConstants.*;
 import static utilz.HelpMethods.IsFloor;
-import static utilz.Constants.Dialogue.*;
 
 import gamestates.Playing;
 
@@ -11,7 +10,7 @@ public class Pig extends Enemy {
 	public Pig(float x, float y) {
 		super(x, y, PIG_WIDTH, PIG_HEIGHT, PIG);
 		initHitbox(17, 16);
-		initAttackBox(18, 22, 12);
+		initAttackBox(14, 22, 10);
 	}
 
 	public void update(int[][] lvlData, Playing playing) {
@@ -42,10 +41,7 @@ public class Pig extends Enemy {
 				}
 				move(lvlData);
 
-				if (inAir)
-					playing.addDialogue((int) hitbox.x, (int) hitbox.y, EXCLAMATION);
-
-				break;
+				
 			case ATTACK:
 				if (aniIndex == 0)
 					attackChecked = false;
