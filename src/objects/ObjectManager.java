@@ -78,12 +78,12 @@ public class ObjectManager {
 	// 		}
 	// }
 
-	// public void loadObjects(Level newLevel) {
-	// 	currentLevel = newLevel;
-	// 	potions = new ArrayList<>(newLevel.getPotions());
-	// 	containers = new ArrayList<>(newLevel.getContainers());
-	// 	projectiles.clear();
-	// }
+	public void loadObjects(Level newLevel) {
+		currentLevel = newLevel;
+		// potions = new ArrayList<>(newLevel.getPotions());
+		// containers = new ArrayList<>(newLevel.getContainers());
+		// projectiles.clear();
+	}
 
 	private void loadImgs() {
 		// BufferedImage potionSprite = LoadSave.GetSpriteAtlas(LoadSave.POTION_ATLAS);
@@ -144,17 +144,17 @@ public class ObjectManager {
 	// 		bt.update();
 	// }
 
-	private void updateProjectiles(int[][] lvlData, Player player) {
-		for (Projectile p : projectiles)
-			if (p.isActive()) {
-				p.updatePos();
-				if (p.getHitbox().intersects(player.getHitbox())) {
-					player.changeHealth(-25);
-					p.setActive(false);
-				} else if (IsProjectileHittingLevel(p, lvlData))
-					p.setActive(false);
-			}
-	}
+	// private void updateProjectiles(int[][] lvlData, Player player) {
+	// 	for (Projectile p : projectiles)
+	// 		if (p.isActive()) {
+	// 			p.updatePos();
+	// 			if (p.getHitbox().intersects(player.getHitbox())) {
+	// 				player.changeHealth(-25);
+	// 				p.setActive(false);
+	// 			} else if (IsProjectileHittingLevel(p, lvlData))
+	// 				p.setActive(false);
+	// 		}
+	// }
 
 	// private boolean isPlayerInRange(Cannon c, Player player) {
 	// 	int absValue = (int) Math.abs(player.getHitbox().x - c.getHitbox().x);
@@ -266,13 +266,13 @@ public class ObjectManager {
 	// 		}
 	// }
 
-	// public void resetAllObjects() {
-	// 	loadObjects(playing.getLevelManager().getCurrentLevel());
-	// 	for (Potion p : potions)
-	// 		p.reset();
-	// 	for (GameContainer gc : containers)
-	// 		gc.reset();
-	// 	for (Cannon c : currentLevel.getCannons())
-	// 		c.reset();
-	// }
+	public void resetAllObjects() {
+		loadObjects(playing.getLevelManager().getCurrentLevel());
+		// for (Potion p : potions)
+		// 	p.reset();
+		// for (GameContainer gc : containers)
+		// 	gc.reset();
+		// for (Cannon c : currentLevel.getCannons())
+		// 	c.reset();
+	}
 }
