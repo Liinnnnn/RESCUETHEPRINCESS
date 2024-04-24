@@ -11,26 +11,17 @@ public class LevelManager {
 
 	private Game game;
 	private BufferedImage[] levelSprite;
-	// private BufferedImage[] waterSprite;
 	private ArrayList<Level> levels;
 	private int lvlIndex = 0, aniTick, aniIndex;
 
 	public LevelManager(Game game) {
 		this.game = game;
 		importOutsideSprites();
-		// createWater();
 		levels = new ArrayList<>();
 		buildAllLevels();
 	}
 
-	// private void createWater() {
-	// 	waterSprite = new BufferedImage[5];
-	// 	BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.WATER_TOP);
-	// 	for (int i = 0; i < 4; i++)
-	// 		waterSprite[i] = img.getSubimage(i * 32, 0, 32, 32);
-	// 	waterSprite[4] = LoadSave.GetSpriteAtlas(LoadSave.WATER_BOTTOM);
-	// }
-
+	
 	public void loadNextLevel() {
 		Level newLevel = levels.get(lvlIndex);
 		game.getPlaying().getEnemyManager().loadEnemies(newLevel);
@@ -62,9 +53,6 @@ public class LevelManager {
 				int x = Game.TILES_SIZE * i - lvlOffset;
 				int y = Game.TILES_SIZE * j;
 				if (index == 48) index = 0;
-				// 	g.drawImage(waterSprite[aniIndex], x, y, Game.TILES_SIZE, Game.TILES_SIZE, null);
-				// else if (index == 49)
-				// 	g.drawImage(waterSprite[4], x, y, Game.TILES_SIZE, Game.TILES_SIZE, null);
 				else
 					g.drawImage(levelSprite[index], x, y, Game.TILES_SIZE, Game.TILES_SIZE, null);
 			}

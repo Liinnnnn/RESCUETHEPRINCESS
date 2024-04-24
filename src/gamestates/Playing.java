@@ -6,8 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.util.Random;
-import java.util.ArrayList;
 
 import entities.EnemyManager;
 import entities.Player;
@@ -19,11 +17,8 @@ import ui.GameOverOverlay;
 import ui.LevelCompletedOverlay;
 import ui.PauseOverlay;
 import utilz.LoadSave;
-import effects.DialogueEffect;
-import effects.Rain;
 
-// import static utilz.Constants.Environment.*;
-import static utilz.Constants.Dialogue.*;
+
 
 public class Playing extends State implements Statemethods {
 
@@ -35,7 +30,6 @@ public class Playing extends State implements Statemethods {
 	private GameOverOverlay gameOverOverlay;
 	private GameCompletedOverlay gameCompletedOverlay;
 	private LevelCompletedOverlay levelCompletedOverlay;
-	private Rain rain;
 
 	private boolean paused = false;
 
@@ -44,90 +38,32 @@ public class Playing extends State implements Statemethods {
 	private int rightBorder = (int) (0.75 * Game.GAME_WIDTH);
 	private int maxLvlOffsetX;
 
-	private BufferedImage backgroundImg, bigCloud, smallCloud, shipImgs[];
-	private BufferedImage[] questionImgs, exclamationImgs;
-	private ArrayList<DialogueEffect> dialogEffects = new ArrayList<>();
+	private BufferedImage backgroundImg;
 
-	private int[] smallCloudsPos;
-	private Random rnd = new Random();
 
 	private boolean gameOver;
 	private boolean lvlCompleted;
 	private boolean gameCompleted;
 	private boolean playerDying;
-	private boolean drawRain;
 
-	// Ship will be decided to drawn here. It's just a cool addition to the game
-	// for the first level. Hinting on that the player arrived with the boat.
-
-	// If you would like to have it on more levels, add a value for objects when
-	// creating the level from lvlImgs. Just like any other object.
-
-	// Then play around with position values so it looks correct depending on where
-	// you want
-	// it.
-
-	// private boolean drawShip = true;
-	// private int shipAni, shipTick, shipDir = 1;
-	// private float shipHeightDelta, shipHeightChange = 0.05f * Game.SCALE;
+	
 
 	public Playing(Game game) {
 		super(game);
 		initClasses();
 
 		backgroundImg = LoadSave.GetSpriteAtlas(LoadSave.PLAYING_BG_IMG);
-		// bigCloud = LoadSave.GetSpriteAtlas(LoadSave.BIG_CLOUDS);
-		// smallCloud = LoadSave.GetSpriteAtlas(LoadSave.SMALL_CLOUDS);
-		// smallCloudsPos = new int[8];
-		// for (int i = 0; i < smallCloudsPos.length; i++)
-		// 	smallCloudsPos[i] = (int) (90 * Game.SCALE) + rnd.nextInt((int) (100 * Game.SCALE));
 
-		// shipImgs = new BufferedImage[4];
-		// BufferedImage temp = LoadSave.GetSpriteAtlas(LoadSave.SHIP);
-		// for (int i = 0; i < shipImgs.length; i++)
-		// 	shipImgs[i] = temp.getSubimage(i * 78, 0, 78, 72);
-
-		// loadDialogue();
 		calcLvlOffset();
 		loadStartLevel();
-		setDrawRainBoolean();
 	}
 
-	// private void loadDialogue() {
-	// 	loadDialogueImgs();
-
-	// 	// Load dialogue array with premade objects, that gets activated when needed.
-	// 	// This is a simple
-	// 	// way of avoiding ConcurrentModificationException error. (Adding to a list that
-	// 	// is being looped through.
-
-	// 	for (int i = 0; i < 10; i++)
-	// 		dialogEffects.add(new DialogueEffect(0, 0, EXCLAMATION));
-	// 	for (int i = 0; i < 10; i++)
-	// 		dialogEffects.add(new DialogueEffect(0, 0, QUESTION));
-
-	// 	for (DialogueEffect de : dialogEffects)
-	// 		de.deactive();
-	// }
-
-	// private void loadDialogueImgs() {
-	// 	BufferedImage qtemp = LoadSave.GetSpriteAtlas(LoadSave.QUESTION_ATLAS);
-	// 	questionImgs = new BufferedImage[5];
-	// 	for (int i = 0; i < questionImgs.length; i++)
-	// 		questionImgs[i] = qtemp.getSubimage(i * 14, 0, 14, 12);
-
-	// 	BufferedImage etemp = LoadSave.GetSpriteAtlas(LoadSave.EXCLAMATION_ATLAS);
-	// 	exclamationImgs = new BufferedImage[5];
-	// 	for (int i = 0; i < exclamationImgs.length; i++)
-	// 		exclamationImgs[i] = etemp.getSubimage(i * 14, 0, 14, 12);
-	// }
 
 	public void loadNextLevel() {
 		levelManager.setLevelIndex(levelManager.getLevelIndex() + 1);
 		levelManager.loadNextLevel();
 		player.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 		resetAll();
-		// drawShip = false;
 	}
 
 	private void loadStartLevel() {
@@ -153,7 +89,6 @@ public class Playing extends State implements Statemethods {
 		levelCompletedOverlay = new LevelCompletedOverlay(this);
 		gameCompletedOverlay = new GameCompletedOverlay(this);
 
-		rain = new Rain();
 	}
 
 	@Override
@@ -169,63 +104,12 @@ public class Playing extends State implements Statemethods {
 		else if (playerDying)
 			player.update();
 		else {
-			updateDialogue();
-			if (drawRain)
-				rain.update(xLvlOffset);
 			levelManager.update();
-			objectManager.update(levelManager.getCurrentLevel().getLevelData(), player);
 			player.update();
 			enemyManager.update(levelManager.getCurrentLevel().getLevelData());
 			checkCloseToBorder();
-			// if (drawShip)
-			// 	updateShipAni();
+			
 		}
-	}
-
-	// private void updateShipAni() {
-	// 	shipTick++;
-	// 	if (shipTick >= 35) {
-	// 		shipTick = 0;
-	// 		shipAni++;
-	// 		if (shipAni >= 4)
-	// 			shipAni = 0;
-	// 	}
-
-	// 	shipHeightDelta += shipHeightChange * shipDir;
-	// 	shipHeightDelta = Math.max(Math.min(10 * Game.SCALE, shipHeightDelta), 0);
-
-	// 	if (shipHeightDelta == 0)
-	// 		shipDir = 1;
-	// 	else if (shipHeightDelta == 10 * Game.SCALE)
-	// 		shipDir = -1;
-
-	// }
-
-	private void updateDialogue() {
-		for (DialogueEffect de : dialogEffects)
-			if (de.isActive())
-				de.update();
-	}
-
-	private void drawDialogue(Graphics g, int xLvlOffset) {
-		for (DialogueEffect de : dialogEffects)
-			if (de.isActive()) {
-				if (de.getType() == QUESTION)
-					g.drawImage(questionImgs[de.getAniIndex()], de.getX() - xLvlOffset, de.getY(), DIALOGUE_WIDTH, DIALOGUE_HEIGHT, null);
-				else
-					g.drawImage(exclamationImgs[de.getAniIndex()], de.getX() - xLvlOffset, de.getY(), DIALOGUE_WIDTH, DIALOGUE_HEIGHT, null);
-			}
-	}
-
-	public void addDialogue(int x, int y, int type) {
-		// Not adding a new one, we are recycling. #ThinkGreen lol
-		dialogEffects.add(new DialogueEffect(x, y - (int) (Game.SCALE * 15), type));
-		for (DialogueEffect de : dialogEffects)
-			if (!de.isActive())
-				if (de.getType() == type) {
-					de.reset(x, -(int) (Game.SCALE * 15));
-					return;
-				}
 	}
 
 	private void checkCloseToBorder() {
@@ -244,19 +128,10 @@ public class Playing extends State implements Statemethods {
 	public void draw(Graphics g) {
 		g.drawImage(backgroundImg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
 
-		// drawClouds(g);
-		if (drawRain)
-			rain.draw(g, xLvlOffset);
-
-		// if (drawShip)
-		// 	g.drawImage(shipImgs[shipAni], (int) (100 * Game.SCALE) - xLvlOffset, (int) ((288 * Game.SCALE) + shipHeightDelta), (int) (78 * Game.SCALE), (int) (72 * Game.SCALE), null);
-
 		levelManager.draw(g, xLvlOffset);
 		objectManager.draw(g, xLvlOffset);
 		enemyManager.draw(g, xLvlOffset);
 		player.render(g, xLvlOffset);
-		// objectManager.drawBackgroundTrees(g, xLvlOffset);
-		drawDialogue(g, xLvlOffset);
 
 		if (paused) {
 			g.setColor(new Color(0, 0, 0, 150));
@@ -271,13 +146,6 @@ public class Playing extends State implements Statemethods {
 
 	}
 
-	// private void drawClouds(Graphics g) {
-	// 	for (int i = 0; i < 4; i++)
-	// 		g.drawImage(bigCloud, i * BIG_CLOUD_WIDTH - (int) (xLvlOffset * 0.3), (int) (204 * Game.SCALE), BIG_CLOUD_WIDTH, BIG_CLOUD_HEIGHT, null);
-
-	// 	for (int i = 0; i < smallCloudsPos.length; i++)
-	// 		g.drawImage(smallCloud, SMALL_CLOUD_WIDTH * 4 * i - (int) (xLvlOffset * 0.7), smallCloudsPos[i], SMALL_CLOUD_WIDTH, SMALL_CLOUD_HEIGHT, null);
-	// }
 
 	public void setGameCompleted() {
 		gameCompleted = true;
@@ -292,37 +160,25 @@ public class Playing extends State implements Statemethods {
 		paused = false;
 		lvlCompleted = false;
 		playerDying = false;
-		drawRain = false;
 
-		setDrawRainBoolean();
 
 		player.resetAll();
 		enemyManager.resetAllEnemies();
 		objectManager.resetAllObjects();
-		dialogEffects.clear();
 	}
 
-	private void setDrawRainBoolean() {
-		// This method makes it rain 20% of the time you load a level.
-		if (rnd.nextFloat() >= 0.8f)
-			drawRain = true;
-	}
 
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
 	}
 
-	// public void checkObjectHit(Rectangle2D.Float attackBox) {
-	// 	objectManager.checkObjectHit(attackBox);
-	// }d
+
 
 	public void checkEnemyHit(Rectangle2D.Float attackBox) {
 		enemyManager.checkEnemyHit(attackBox);
 	}
 
-	public void checkPotionTouched(Rectangle2D.Float hitbox) {
-		// objectManager.checkObjectTouched(hitbox);
-	}
+	
 
 	public void checkSpikesTouched(Player p) {
 		objectManager.checkSpikesTouched(p);
@@ -427,7 +283,7 @@ public class Playing extends State implements Statemethods {
 		if (levelManager.getLevelIndex() + 1 >= levelManager.getAmountOfLevels()) {
 			// No more levels
 			gameCompleted = true;
-			levelManager.setLevelIndex(0);
+			levelManager.setLevelIndex(2);
 			levelManager.loadNextLevel();
 			resetAll();
 			return;
