@@ -46,17 +46,17 @@ public class EnemyManager {
 	}
 
 	public void draw(Graphics g, int xLvlOffset) {
-		drawCrabs(g, xLvlOffset);
+		drawPigs(g, xLvlOffset);
 		drawKingPig(g, xLvlOffset);
 	}
 
 
-	private void drawCrabs(Graphics g, int xLvlOffset) {
+	private void drawPigs(Graphics g, int xLvlOffset) {
 		for (Pig p : currentLevel.getPigs()){
 			if (p.isActive()) {
 
 				g.drawImage(pigArr[p.getState()][p.getAniIndex()], (int) p.getHitbox().x - xLvlOffset - PIG_DRAWOFFSET_X + p.flipX(),
-						(int) p.getHitbox().y - PIG_DRAWOFFSET_Y + (int) p.getPushDrawOffset(), PIG_WIDTH * p.flipW(), PIG_HEIGHT, null);
+					(int) p.getHitbox().y - PIG_DRAWOFFSET_Y + (int) p.getPushDrawOffset(), PIG_WIDTH * p.flipW(), PIG_HEIGHT, null);
 
 				p.drawHitbox(g, xLvlOffset);
 				p.drawAttackBox(g, xLvlOffset);
@@ -80,7 +80,7 @@ public class EnemyManager {
 			if (p.isActive())
 				if (p.getState() != DEAD && p.getState() != HIT)
 					if (attackBox.intersects(p.getHitbox())) {
-						p.hurt(30);
+						p.hurt(100);
 						return;
 					}
 		}
@@ -89,7 +89,7 @@ public class EnemyManager {
 			if(k.isActive())
 				if(k.getState() != DEAD && k.getState() != HIT)
 					if(attackBox.intersects(k.getHitbox())){
-						k.hurt(30);
+						k.hurt(100);
 						return;
 					}
 		}
