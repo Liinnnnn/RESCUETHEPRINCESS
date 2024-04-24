@@ -62,7 +62,7 @@ public class Game implements Runnable {
 		case MENU -> menu.update();
 		case PLAYING -> playing.update();
 		case OPTIONS -> gameOptions.update();
-		case CREDITS -> credits.update();
+//		case CREDITS -> credits.update();
 		case QUIT -> System.exit(0);
 		}
 	}
@@ -73,7 +73,7 @@ public class Game implements Runnable {
 		case MENU -> menu.draw(g);
 		case PLAYING -> playing.draw(g);
 		case OPTIONS -> gameOptions.draw(g);
-		case CREDITS -> credits.draw(g);
+//		case CREDITS -> credits.draw(g);
 		}
 	}
 
