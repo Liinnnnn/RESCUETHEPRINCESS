@@ -11,15 +11,15 @@ import javax.imageio.ImageIO;
 
 public class LoadSave {
 
-	public static final String PLAYER_ATLAS = "combined_image (5).png";
+	public static final String PLAYER_ATLAS = "player.png";
 	public static final String LEVEL_ATLAS = "orange_brick.png";
 	public static final String MENU_BUTTONS = "TExtMenu.png";
-	public static final String MENU_BACKGROUND = "background_menu(2).png";
-	public static final String PAUSE_BACKGROUND = "pause_menu_2.png";
+	public static final String MENU_BACKGROUND = "background_menu.png";
+	public static final String PAUSE_BACKGROUND = "pause_menu.png";
 	public static final String SOUND_BUTTONS = "sound_button.png";
 	public static final String URM_BUTTONS = "urm_buttons.png";
 	public static final String VOLUME_BUTTONS = "volume_buttons.png";
-	public static final String MENU_BACKGROUND_IMG = "background_menu(2).png";
+	public static final String MENU_BACKGROUND_IMG = "background_menu.png";
 	public static final String PLAYING_BG_IMG = "BACKGROUND.png";
 	public static final String PIG_SPRITE = "Pig.png";
 	public static final String KINGPIG_SPRITE = "KingPig.png";
