@@ -65,8 +65,7 @@ public abstract class Enemy extends Entity {
 		if (state != HIT && state != DEAD) {
 			updateInAir(lvlData);
 			playing.getObjectManager().checkSpikesTouched(this);
-			if (IsEntityInWater(hitbox, lvlData))
-				hurt(maxHealth);
+
 		}
 	}
 
