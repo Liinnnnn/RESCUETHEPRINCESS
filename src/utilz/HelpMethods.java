@@ -28,6 +28,14 @@ public class HelpMethods {
 	}
 
 
+
+
+	private static int GetTileValue(float xPos, float yPos, int[][] lvlData) {
+		int xCord = (int) (xPos / Game.TILES_SIZE);
+		int yCord = (int) (yPos / Game.TILES_SIZE);
+		return lvlData[yCord][xCord];
+	}
+
 	public static boolean IsTileSolid(int xTile, int yTile, int[][] lvlData) {
 		int value = lvlData[yTile][xTile];
 
@@ -86,6 +94,8 @@ public class HelpMethods {
 		return true;
 	}
 
+
+
 	public static boolean IsAllTilesClear(int xStart, int xEnd, int y, int[][] lvlData) {
 		for (int i = 0; i < xEnd - xStart; i++)
 			if (IsTileSolid(xStart + i, y, lvlData))
@@ -101,7 +111,9 @@ public class HelpMethods {
 			}
 		return true;
 	}
-	
+
+
+
 	public static boolean IsSightClear(int[][] lvlData, Rectangle2D.Float enemyBox, Rectangle2D.Float playerBox, int yTile) {
 		int firstXTile = (int) (enemyBox.x / Game.TILES_SIZE);
 
