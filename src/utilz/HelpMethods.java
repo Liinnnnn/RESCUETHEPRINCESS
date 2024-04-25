@@ -28,21 +28,6 @@ public class HelpMethods {
 	}
 
 
-	public static boolean IsEntityInWater(Rectangle2D.Float hitbox, int[][] lvlData) {
-		// Will only check if entity touch top water. Can't reach bottom water if not
-		// touched top water.
-		if (GetTileValue(hitbox.x, hitbox.y + hitbox.height, lvlData) != 48)
-			if (GetTileValue(hitbox.x + hitbox.width, hitbox.y + hitbox.height, lvlData) != 48)
-				return false;
-		return true;
-	}
-
-	private static int GetTileValue(float xPos, float yPos, int[][] lvlData) {
-		int xCord = (int) (xPos / Game.TILES_SIZE);
-		int yCord = (int) (yPos / Game.TILES_SIZE);
-		return lvlData[yCord][xCord];
-	}
-
 	public static boolean IsTileSolid(int xTile, int yTile, int[][] lvlData) {
 		int value = lvlData[yTile][xTile];
 
@@ -126,14 +111,7 @@ public class HelpMethods {
 			}
 		return true;
 	}
-
-	// Player can sometimes be on an edge and in sight of enemy.
-	// The old method would return false because the player x is not on edge.
-	// This method checks both player x and player x + width.
-	// If tile under playerBox.x is not solid, we switch to playerBox.x +
-	// playerBox.width;
-	// One of them will be true, because of prior checks.
-
+	
 	public static boolean IsSightClear(int[][] lvlData, Rectangle2D.Float enemyBox, Rectangle2D.Float playerBox, int yTile) {
 		int firstXTile = (int) (enemyBox.x / Game.TILES_SIZE);
 
