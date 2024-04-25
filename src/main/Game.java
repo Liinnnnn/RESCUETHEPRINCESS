@@ -33,7 +33,7 @@ public class Game implements Runnable {
 	private final boolean SHOW_FPS_UPS = true;
 
 	public Game() {
-		System.out.println("size: " + GAME_WIDTH + " : " + GAME_HEIGHT);
+		// System.out.println("size: " + GAME_WIDTH + " : " + GAME_HEIGHT);
 		initClasses();
 		gamePanel = new GamePanel(this);
 		new GameWindow(gamePanel);
@@ -114,7 +114,7 @@ public class Game implements Runnable {
 				if (System.currentTimeMillis() - lastCheck >= 1000) {
 
 					lastCheck = System.currentTimeMillis();
-					System.out.println("FPS: " + frames + " | UPS: " + updates);
+					System.out.println("FPS: " + frames);
 					frames = 0;
 					updates = 0;
 
