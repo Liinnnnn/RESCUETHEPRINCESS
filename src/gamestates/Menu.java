@@ -26,8 +26,8 @@ public class Menu extends State implements Statemethods {
 		backgroundImg = LoadSave.GetSpriteAtlas(LoadSave.MENU_BACKGROUND);
 		menuWidth = (int) (backgroundImg.getWidth() * Game.SCALE);
 		menuHeight = (int) (backgroundImg.getHeight() * Game.SCALE);
-		menuX = 0;//Game.GAME_WIDTH / 2 - menuWidth / 2;
-		menuY = 0;//(int) (25 * Game.SCALE);
+		menuX = 0;
+		menuY = 0;
 	}
 
 	private void loadButtons() {
